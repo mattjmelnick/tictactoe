@@ -4,7 +4,7 @@ function createPlayer(name, marker) {
         let inputCoords = prompt("Enter coordinates:");
         boardCoords = inputCoords.split(" ");
         return boardCoords;
-    }
+    };
     return { name, marker, getInput};
 }
 
@@ -20,22 +20,53 @@ const board = (function () {
 })();
 
 const game = (function () {
+    let gameWonCheck = true;
     const checkForWin = (gameBoard) => {
         // logic for looping through gameboard array
-        return true;
-    }
+        let xCounter = 0;
+        let oCounter = 0;
+        let gamePlaying = true;
+        // Check rows
+        for (let i = 0; i < gameBoard.length; i++) {
+            for (let j = 0; j < gameBoard[i].length; j++) {
+                if (gameBoard[i][j] === 'x') {
+                    xCounter++;
+                }
+                else if (gameBoard[i][j] === 'o') {
+                    oCounter++;
+                }
+            }
+            if (xCounter === 3) {
+                console.log("Player 1 wins");
+                gamePlaying = false;
+                return gameWon;
+            }
+            else if (oCounter === 3) {
+                console.log("Player 2 wins");
+                gamePlaying = false;
+                return gameWon;
+            }
+            else {
+                xCounter = 0;
+                oCounter = 0;
+            }
+        }
+        // Check columns
+        // add code
+        return gamePlaying;
+    };
     const playRound = () => {
-        let gameWon = checkForWin(board.gameBoard);
-        while (!gameWon) {
+        while (gameWonCheck) {
+            console.log(gameWonCheck);
             let player1Coords = player1.getInput();
             board.updateCoordinates(player1Coords, player1.marker);
             board.displayBoard();
-            checkForWin(board.gameBoard);
+            gameWonCheck = checkForWin(board.gameBoard);
             let player2Coords = player2.getInput();
             board.updateCoordinates(player2Coords, player2.marker);
             board.displayBoard();
-            checkForWin(board.gameBoard);
+            gameWonCheck = checkForWin(board.gameBoard);
         }
     }
-    return { playRound };
+    return { playRound, checkForWin };
 })();

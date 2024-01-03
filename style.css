@@ -1,0 +1,31 @@
+body {
+    background-color: #e3e3e3;
+}
+
+.display-area {
+    height: 30rem;
+    width: 25rem;
+    background-color: grey;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.board-display {
+    height: 15rem;
+    width: 15rem;
+    border: 2px solid black;
+    margin-top: 2rem;
+    box-sizing: border-box;
+}
+
+.text-area {
+    height: 5rem;
+    width: 10rem;
+    background-color: lightgray;
+    margin-bottom: 5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
